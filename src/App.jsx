@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
-import Home from './src/pages/Home.jsx';
-import Fleet from './src/pages/Fleet.jsx';
-import CarDetail from './src/pages/CarDetail.jsx';
-import Booking from './src/pages/Booking.jsx';
-import MyBookings from './src/pages/MyBookings.jsx';
-import Pricing from './src/pages/Pricing.jsx';
+import Home from './pages/Home.jsx';
+import Fleet from './pages/Fleet.jsx';
+import CarDetail from './pages/CarDetail.jsx';
+import Booking from './pages/Booking.jsx';
+import MyBookings from './pages/MyBookings.jsx';
+import Pricing from './pages/Pricing.jsx';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
