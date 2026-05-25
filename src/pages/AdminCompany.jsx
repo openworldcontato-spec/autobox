@@ -9,7 +9,7 @@ const labelClass = "mb-1.5 block text-xs font-black uppercase tracking-widest te
 
 export default function AdminCompany() {
   const companyId = getSelectedCompanyId();
-  const company = getCompanyById(companyId);
+  const company = getCompanyById(companyId) || {};
   const [form, setForm] = useState(company);
   const [saved, setSaved] = useState(false);
 
@@ -32,7 +32,7 @@ export default function AdminCompany() {
     setSaved(true);
   };
 
-  const actions = <Link to={`/locadora/${form.slug}`} className="inline-flex items-center gap-2 rounded-2xl border border-gray-200 bg-white px-5 py-3 text-sm font-black text-gray-700 hover:border-gold"><Globe2 className="h-4 w-4" /> Ver página pública</Link>;
+  const actions = form.slug ? <Link to={`/locadora/${form.slug}`} className="inline-flex items-center gap-2 rounded-2xl border border-gray-200 bg-white px-5 py-3 text-sm font-black text-gray-700 hover:border-gold"><Globe2 className="h-4 w-4" /> Ver página pública</Link> : null;
 
   return (
     <AdminShell title="Dados da empresa" subtitle="Nome, logo, contato, regras e textos públicos da locadora." actions={actions}>

@@ -21,13 +21,13 @@ export default function AdminDashboard() {
   );
 
   return (
-    <AdminShell title="Dashboard" subtitle={`Operação atual: ${company.name}`} actions={actions}>
+    <AdminShell title="Dashboard" subtitle={`Operação atual: ${company.name || "Sem empresa"}`} actions={actions}>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {[
           { label: "Carros cadastrados", value: summary.cars, icon: Car, helper: `${summary.availableCars} disponíveis` },
           { label: "Reservas", value: summary.reservations, icon: ClipboardList, helper: `${summary.pendingReservations} pendentes` },
           { label: "Receita aprovada", value: summary.revenueLabel, icon: CreditCard, helper: "Reservas aprovadas/concluídas" },
-          { label: "Plano SaaS", value: formatCurrency(company.planPrice), icon: CheckCircle2, helper: "AutoBox Pro mensal" },
+          { label: "Plano SaaS", value: formatCurrency(company.planPrice || 0), icon: CheckCircle2, helper: "AutoBox Pro mensal" },
         ].map(({ label, value, icon: Icon, helper }) => (
           <div key={label} className={cardClasses}>
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-50 text-gold"><Icon className="h-6 w-6" /></div>
@@ -94,7 +94,7 @@ export default function AdminDashboard() {
           <MessageCircle className="mt-1 h-6 w-6 shrink-0 text-yellow-700" />
           <div>
             <p className="font-black text-yellow-900">Sem confusão de monetização</p>
-            <p className="mt-1 text-sm text-yellow-800">O plano {company.planName} ({formatCurrency(company.planPrice)}/mês) é cobrado da locadora. Diária, semanal, mensal, caução e pacotes são cadastrados pela própria locadora.</p>
+            <p className="mt-1 text-sm text-yellow-800">O plano {company.planName || "AutoBox Pro"} ({formatCurrency(company.planPrice || 0)}/mês) é cobrado da locadora. Diária, semanal, mensal, caução e pacotes são cadastrados pela própria locadora.</p>
           </div>
         </div>
       </div>

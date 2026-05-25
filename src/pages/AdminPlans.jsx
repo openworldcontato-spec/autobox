@@ -7,7 +7,7 @@ const inputClass = "w-full rounded-2xl border border-gray-200 bg-white px-4 py-3
 
 export default function AdminPlans() {
   const companyId = getSelectedCompanyId();
-  const company = getCompanyById(companyId);
+  const company = getCompanyById(companyId) || {};
   const [packages, setPackages] = useState(company.packages || []);
   const [saved, setSaved] = useState(false);
 

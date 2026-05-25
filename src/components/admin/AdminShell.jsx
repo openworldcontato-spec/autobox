@@ -28,7 +28,7 @@ export function AdminShell({ children, title, subtitle, actions, activeCompanyId
 
   const selectedId = activeCompanyId || getSelectedCompanyId();
   const selectedCompany = useMemo(() => companies.find((company) => company.id === selectedId) || companies[0], [companies, selectedId]);
-  const pageMenu = menu.map((item) => item.publicLink && selectedCompany ? { ...item, href: `/locadora/${selectedCompany.slug}` } : item);
+  const pageMenu = menu.map((item) => item.publicLink ? { ...item, href: selectedCompany?.slug ? `/locadora/${selectedCompany.slug}` : "/locadoras" } : item);
 
   const handleChange = (event) => {
     setSelectedCompanyId(event.target.value);
