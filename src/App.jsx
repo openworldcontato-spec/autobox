@@ -1,72 +1,57 @@
 import { Toaster } from "@/components/ui/toaster";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClientInstance } from "@/lib/query-client";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import PageNotFound from "./lib/PageNotFound";
-import { AuthProvider, useAuth } from "@/lib/AuthContext";
-import UserNotRegisteredError from "@/components/UserNotRegisteredError";
 import BottomNav from "@/components/layout/BottomNav";
 import Home from "./pages/Home.jsx";
-import Fleet from "./pages/Fleet.jsx";
-import CarDetail from "./pages/CarDetail.jsx";
-import Booking from "./pages/Booking.jsx";
-import MyBookings from "./pages/MyBookings.jsx";
 import Pricing from "./pages/Pricing.jsx";
-
-const AuthenticatedApp = () => {
-  const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
-
-  if (isLoadingPublicSettings || isLoadingAuth) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-4 border-gray-100 border-t-gold rounded-full animate-spin"></div>
-          <p className="text-sm text-gray-400 font-medium">Carregando AutoBox…</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (authError) {
-    if (authError.type === "user_not_registered") {
-      return <UserNotRegisteredError />;
-    } else if (authError.type === "auth_required") {
-      navigateToLogin();
-      return null;
-    }
-  }
-
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/fleet" element={<Fleet />} />
-        <Route path="/frota" element={<Fleet />} />
-        <Route path="/car/:id" element={<CarDetail />} />
-        <Route path="/carro/:id" element={<CarDetail />} />
-        <Route path="/booking/:id" element={<Booking />} />
-        <Route path="/reserva/:id" element={<Booking />} />
-        <Route path="/bookings" element={<MyBookings />} />
-        <Route path="/reservas" element={<MyBookings />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/planos" element={<Pricing />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-      <BottomNav />
-    </>
-  );
-};
+import SignupCompany from "./pages/SignupCompany.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import AdminCompany from "./pages/AdminCompany.jsx";
+import AdminCars from "./pages/AdminCars.jsx";
+import AdminReservations from "./pages/AdminReservations.jsx";
+import AdminPlans from "./pages/AdminPlans.jsx";
+import PublicCompany from "./pages/PublicCompany.jsx";
+import CompanyDirectory from "./pages/CompanyDirectory.jsx";
+import SuperAdmin from "./pages/SuperAdmin.jsx";
 
 function App() {
   return (
-    <AuthProvider>
-      <QueryClientProvider client={queryClientInstance}>
-        <Router>
-          <AuthenticatedApp />
-        </Router>
-        <Toaster />
-      </QueryClientProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClientInstance}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/planos" element={<Pricing />} />
+          <Route path="/cadastro-empresa" element={<SignupCompany />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/painel" element={<Navigate to="/admin" replace />} />
+          <Route path="/admin/empresa" element={<AdminCompany />} />
+          <Route path="/admin/carros" element={<AdminCars />} />
+          <Route path="/admin/frota" element={<Navigate to="/admin/carros" replace />} />
+          <Route path="/admin/reservas" element={<AdminReservations />} />
+          <Route path="/admin/planos" element={<AdminPlans />} />
+          <Route path="/super-admin" element={<SuperAdmin />} />
+          <Route path="/locadora/:slug" element={<PublicCompany />} />
+          <Route path="/locadoras" element={<CompanyDirectory />} />
+
+          {/* Rotas antigas preservadas para não quebrar navegação já publicada */}
+          <Route path="/fleet" element={<CompanyDirectory />} />
+          <Route path="/frota" element={<CompanyDirectory />} />
+          <Route path="/bookings" element={<Navigate to="/admin/reservas" replace />} />
+          <Route path="/reservas" element={<Navigate to="/admin/reservas" replace />} />
+          <Route path="/booking/:id" element={<Navigate to="/locadora/alpha-flex" replace />} />
+          <Route path="/reserva/:id" element={<Navigate to="/locadora/alpha-flex" replace />} />
+          <Route path="/car/:id" element={<Navigate to="/locadora/alpha-flex" replace />} />
+          <Route path="/carro/:id" element={<Navigate to="/locadora/alpha-flex" replace />} />
+
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+        <BottomNav />
+      </Router>
+      <Toaster />
+    </QueryClientProvider>
   );
 }
 
