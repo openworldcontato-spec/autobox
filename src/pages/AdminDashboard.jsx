@@ -8,15 +8,15 @@ const cardClasses = "rounded-[2rem] border border-gray-100 bg-white p-6 shadow-s
 
 export default function AdminDashboard() {
   const companyId = getSelectedCompanyId();
-  const company = getCompanyById(companyId);
-  const summary = summarizeCompany(companyId);
-  const cars = getCarsByCompany(companyId);
-  const reservations = getReservationsByCompany(companyId).slice(0, 4);
+  const company = getCompanyById(companyId) || {};
+  const summary = summarizeCompany(companyId) || {};
+  const cars = getCarsByCompany(companyId) || [];
+  const reservations = (getReservationsByCompany(companyId) || []).slice(0, 4);
 
   const actions = (
     <>
       <Link to="/admin/carros" className="inline-flex items-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-black text-white hover:bg-navy"><Plus className="h-4 w-4" /> Novo carro</Link>
-      <Link to={`/locadora/${company.slug}`} className="inline-flex items-center gap-2 rounded-2xl border border-gray-200 bg-white px-5 py-3 text-sm font-black text-gray-700 hover:border-gold"><Globe2 className="h-4 w-4" /> Ver página</Link>
+      <Link to={`/locadora/${company.slug || ""}`} className="inline-flex items-center gap-2 rounded-2xl border border-gray-200 bg-white px-5 py-3 text-sm font-black text-gray-700 hover:border-gold"><Globe2 className="h-4 w-4" /> Ver página</Link>
     </>
   );
 
