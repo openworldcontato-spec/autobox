@@ -36,8 +36,21 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground font-inter;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: contain;
+  }
+  button, a, input, select {
+    touch-action: manipulation;
+  }
+  @media (max-width: 1023px) {
+    body {
+      padding-bottom: calc(76px + env(safe-area-inset-bottom));
+    }
   }
 }
 

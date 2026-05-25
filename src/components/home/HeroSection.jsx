@@ -2,36 +2,37 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Star, ArrowRight, Shield, Award, Clock } from "lucide-react";
+import { formatCurrency } from "@/lib/formatters";
 
 const heroSlides = [
   {
     image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&q=80",
     car: "Lamborghini Huracán",
-    tagline: "0–60 in 2.9 Seconds",
-    subtitle: "From $899/day",
-    cta: "Experience the Thrill",
+    tagline: "Alugue carros premium no Brasil",
+    price: 3890,
+    cta: "Ver supercarros",
   },
   {
     image: "https://images.unsplash.com/photo-1563720360172-67b8f3dce741?w=1920&q=80",
     car: "Rolls-Royce Ghost",
-    tagline: "Effortless Prestige",
-    subtitle: "From $1,299/day",
-    cta: "Arrive in Style",
+    tagline: "Chegue com presença de verdade",
+    price: 5290,
+    cta: "Reservar luxo",
   },
   {
     image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=80",
     car: "Porsche 911 Turbo S",
-    tagline: "Engineered Perfection",
-    subtitle: "From $649/day",
-    cta: "Drive the Legend",
+    tagline: "Performance sem burocracia",
+    price: 2990,
+    cta: "Dirigir agora",
   },
 ];
 
 const stats = [
-  { icon: Award, value: "150+", label: "Luxury Vehicles" },
-  { icon: Star, value: "4.9★", label: "Average Rating" },
-  { icon: Shield, value: "100%", label: "Insured" },
-  { icon: Clock, value: "24/7", label: "Support" },
+  { icon: Award, value: "150+", label: "Veículos premium" },
+  { icon: Star, value: "4,9★", label: "Avaliação média" },
+  { icon: Shield, value: "100%", label: "Seguro incluso" },
+  { icon: Clock, value: "24/7", label: "Suporte" },
 ];
 
 export default function HeroSection() {
@@ -48,8 +49,7 @@ export default function HeroSection() {
   const next = () => { setCurrent(c => (c + 1) % heroSlides.length); setAutoPlay(false); };
 
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden">
-      {/* Background Slides */}
+    <section className="relative min-h-[760px] lg:h-screen lg:min-h-[650px] overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -59,18 +59,13 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="absolute inset-0"
         >
-          <img
-            src={heroSlides[current].image}
-            alt={heroSlides[current].car}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <img src={heroSlides[current].image} alt={heroSlides[current].car} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
         </motion.div>
       </AnimatePresence>
 
-      {/* Content */}
-      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-20">
+      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-28 pb-52 lg:pb-28">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -85,42 +80,30 @@ export default function HeroSection() {
               {heroSlides[current].car}
             </div>
 
-            <h1 className="font-playfair text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4">
+            <h1 className="font-playfair text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4">
               {heroSlides[current].tagline}
             </h1>
 
-            <p className="text-2xl text-gold font-semibold mb-3">{heroSlides[current].subtitle}</p>
+            <p className="text-2xl text-gold font-semibold mb-3">A partir de {formatCurrency(heroSlides[current].price)}/dia</p>
             <p className="text-gray-300 text-lg mb-8 max-w-lg">
-              Rent the world's most exclusive vehicles. Delivered to you, anywhere.
+              Reserve em minutos, pague em BRL e receba o carro em endereço, aeroporto ou hotel. Zero novela, só operação redonda.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <Link
-                to="/fleet"
-                className="group inline-flex items-center gap-2 bg-gold hover:bg-yellow-500 text-white font-bold px-8 py-4 rounded-full transition-all duration-200 shadow-2xl shadow-yellow-500/30 text-base"
-              >
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/fleet" className="group inline-flex items-center justify-center gap-2 bg-gold hover:bg-yellow-500 text-white font-bold px-8 py-4 rounded-2xl sm:rounded-full transition-all duration-200 shadow-2xl shadow-yellow-500/30 text-base active:scale-[0.98]">
                 {heroSlides[current].cta}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link
-                to="/fleet"
-                className="inline-flex items-center gap-2 glass text-white font-semibold px-8 py-4 rounded-full hover:bg-white/20 transition-all duration-200 text-base"
-              >
-                View All Cars
+              <Link to="/fleet" className="inline-flex items-center justify-center gap-2 glass text-white font-semibold px-8 py-4 rounded-2xl sm:rounded-full hover:bg-white/20 transition-all duration-200 text-base active:scale-[0.98]">
+                Ver toda a frota
               </Link>
             </div>
           </motion.div>
         </AnimatePresence>
 
-        {/* Stats Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="absolute bottom-8 left-4 right-4 sm:left-6 sm:right-6 lg:left-8 lg:right-8"
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="absolute bottom-8 left-4 right-4 sm:left-6 sm:right-6 lg:left-8 lg:right-8">
           <div className="max-w-7xl mx-auto">
-            <div className="glass rounded-2xl px-6 py-4 grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="glass rounded-2xl px-5 py-4 grid grid-cols-2 lg:grid-cols-4 gap-5">
               {stats.map(({ icon: Icon, value, label }) => (
                 <div key={label} className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -137,25 +120,18 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Carousel Controls */}
-      <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
-        <button onClick={prev} className="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer" aria-label="Previous slide">
+      <div className="hidden sm:flex absolute right-6 top-1/2 -translate-y-1/2 flex-col gap-3 z-10">
+        <button onClick={prev} className="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer" aria-label="Slide anterior">
           <ChevronLeft className="w-5 h-5" />
         </button>
-        <button onClick={next} className="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer" aria-label="Next slide">
+        <button onClick={next} className="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer" aria-label="Próximo slide">
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
 
-      {/* Slide Dots */}
-      <div className="absolute bottom-32 right-6 flex flex-col gap-2 z-10">
+      <div className="hidden sm:flex absolute bottom-32 right-6 flex-col gap-2 z-10">
         {heroSlides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => { setCurrent(i); setAutoPlay(false); }}
-            className={`rounded-full transition-all duration-300 cursor-pointer ${i === current ? "w-1.5 h-6 bg-gold" : "w-1.5 h-1.5 bg-white/40"}`}
-            aria-label={`Go to slide ${i + 1}`}
-          />
+          <button key={i} onClick={() => { setCurrent(i); setAutoPlay(false); }} className={`rounded-full transition-all duration-300 cursor-pointer ${i === current ? "w-1.5 h-6 bg-gold" : "w-1.5 h-1.5 bg-white/40"}`} aria-label={`Ir para slide ${i + 1}`} />
         ))}
       </div>
     </section>
