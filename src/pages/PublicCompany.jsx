@@ -64,7 +64,7 @@ function ReservationForm({ company, car, onClose, onDone }) {
             <textarea rows="3" className={inputClass} value={form.notes} onChange={(e) => change("notes", e.target.value)} placeholder="Local de retirada, dúvidas, necessidade de motorista..." />
           </div>
           <div className="sm:col-span-2 rounded-2xl bg-gray-50 p-4 text-sm text-gray-600">
-            A solicitação entra como <strong>pendente</strong> no painel da locadora. A empresa confirma pelo WhatsApp. Sem pagamento fake aqui.
+            A solicitação entra como <strong>pendente</strong> no painel da locadora. A empresa confirma pelo WhatsApp. O pagamento pode ser integrado posteriormente no fluxo da locadora.
           </div>
           <button type="submit" className="sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-gold px-6 py-4 text-sm font-black text-white hover:bg-yellow-500"><Send className="h-4 w-4" /> Enviar solicitação</button>
         </form>

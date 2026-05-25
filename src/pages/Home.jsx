@@ -7,9 +7,9 @@ import { formatCurrency } from "@/lib/formatters";
 
 const features = [
   { icon: Building2, title: "White-label por locadora", text: "Cada empresa tem nome, logo, contato, página pública e regras próprias." },
-  { icon: Car, title: "CRUD real de frota", text: "Adicionar, editar, excluir, ativar e mudar status dos carros sem depender de dev." },
-  { icon: LayoutDashboard, title: "Painel operacional", text: "Reservas, indicadores, pacotes de aluguel e dados da empresa no mesmo cockpit." },
-  { icon: ShieldCheck, title: "Multiempresa", text: "Dados separados por company_id. Cada locadora no seu quadrado. Sem farofa operacional." },
+  { icon: Car, title: "Gestão completa da frota", text: "Adicione, edite, exclua, ative e altere o status dos veículos pelo painel." },
+  { icon: LayoutDashboard, title: "Painel operacional", text: "Reservas, indicadores, pacotes de aluguel e dados da empresa em um único painel." },
+  { icon: ShieldCheck, title: "Multiempresa", text: "Dados separados por empresa, evitando que uma locadora acesse informações de outra." },
 ];
 
 const flows = [
@@ -33,17 +33,17 @@ export default function Home() {
               <Sparkles className="h-4 w-4" /> SaaS brasileiro para locadoras
             </div>
             <h1 className="font-playfair text-4xl font-black leading-tight text-white sm:text-6xl lg:text-7xl">
-              Venda software para quem aluga carros.
+              Sistema completo para locadoras de veículos.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/65 sm:text-lg">
-              AutoBox agora é um SaaS multiempresa: cada locadora gerencia frota, reservas, logo, contato, página pública e pacotes próprios. Seu plano é único: {formatCurrency(97)}/mês.
+              AutoBox é uma plataforma multiempresa para locadoras: cada empresa gerencia frota, reservas, logo, contato, página pública e pacotes próprios. Plano único: {formatCurrency(97)}/mês.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link to="/cadastro-empresa" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gold px-7 py-4 text-sm font-black text-white shadow-2xl shadow-yellow-500/30 transition-all hover:bg-yellow-500 active:scale-[0.98]">
                 Criar ambiente da locadora <ArrowRight className="h-4 w-4" />
               </Link>
               <Link to="/admin" className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur transition-all hover:bg-white/15 active:scale-[0.98]">
-                Abrir painel demo
+                Abrir painel de exemplo
               </Link>
             </div>
           </motion.div>
@@ -88,9 +88,9 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-3xl">
-          <p className="text-sm font-black uppercase tracking-widest text-gold">Core business alinhado</p>
-          <h2 className="mt-2 font-playfair text-4xl font-black text-gray-900">Não é locadora. É plataforma para locadoras.</h2>
-          <p className="mt-4 text-gray-500">A regra é simples: você cobra o SaaS da empresa. A empresa cadastra os próprios carros, preços e reservas. Sem misturar plano do software com diária de carro.</p>
+          <p className="text-sm font-black uppercase tracking-widest text-gold">Plataforma para locadoras</p>
+          <h2 className="mt-2 font-playfair text-4xl font-black text-gray-900">Uma plataforma SaaS para locadoras venderem mais.</h2>
+          <p className="mt-4 text-gray-500">O AutoBox organiza a operação da locadora: frota, preços, reservas, contato, identidade visual e página pública em um só lugar.</p>
         </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {features.map(({ icon: Icon, title, text }, index) => (
@@ -109,8 +109,8 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="text-sm font-black uppercase tracking-widest text-gold">Fluxo operacional</p>
-            <h2 className="mt-2 font-playfair text-4xl font-black text-gray-900">Do cadastro à reserva, tudo redondo.</h2>
-            <p className="mt-4 text-gray-500">O app já vem com rotas, telas e botões funcionando em modo frontend com localStorage. Depois você pluga Stripe/Base44 no ponto certo.</p>
+            <h2 className="mt-2 font-playfair text-4xl font-black text-gray-900">Do cadastro à reserva, tudo organizado.</h2>
+            <p className="mt-4 text-gray-500">O app já vem com rotas, telas e botões funcionando com persistência local. Depois, a integração com Stripe/Base44 pode ser conectada ao fluxo existente.</p>
             <Link to="/locadora/alpha-flex" className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-primary px-6 py-3 text-sm font-black text-white hover:bg-navy">
               Ver página pública exemplo <ArrowRight className="h-4 w-4" />
             </Link>
@@ -121,7 +121,7 @@ export default function Home() {
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gold text-sm font-black text-white">{index + 1}</div>
                 <div>
                   <p className="font-bold text-gray-900">{flow}</p>
-                  <p className="mt-1 text-sm text-gray-500">Etapa salva e navegável. Nada de botão fake fazendo cosplay de produto.</p>
+                  <p className="mt-1 text-sm text-gray-500">Etapa funcional, com navegação e salvamento local para validação do fluxo.</p>
                 </div>
               </div>
             ))}
@@ -133,7 +133,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl rounded-[2rem] navy-gradient p-8 text-center shadow-2xl sm:p-12">
           <CheckCircle2 className="mx-auto mb-4 h-10 w-10 text-gold" />
           <h2 className="font-playfair text-4xl font-black text-white">Plano único AutoBox Pro</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-white/65">{formatCurrency(97)}/mês para a locadora usar o sistema. Stripe você configura na Base44; aqui a lógica do produto já está no lugar.</p>
+          <p className="mx-auto mt-4 max-w-2xl text-white/65">{formatCurrency(97)}/mês para a locadora usar o sistema. A integração de pagamento pode ser configurada na Base44/Stripe sem alterar a lógica principal do produto.</p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link to="/planos" className="rounded-2xl bg-white px-7 py-4 text-sm font-black text-navy">Ver plano</Link>
             <Link to="/cadastro-empresa" className="rounded-2xl bg-gold px-7 py-4 text-sm font-black text-white">Cadastrar locadora</Link>

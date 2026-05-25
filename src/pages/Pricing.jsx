@@ -26,7 +26,7 @@ export default function Pricing() {
               <Sparkles className="h-4 w-4" /> Plano comercial do SaaS
             </div>
             <h1 className="font-playfair text-4xl font-black text-gray-900 sm:text-6xl">AutoBox Pro</h1>
-            <p className="mx-auto mt-4 max-w-2xl text-gray-500">Plano único para empresas que alugam carros. A cobrança real você liga na Stripe/Base44 depois, sem mudar a lógica das telas.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-gray-500">Plano único para empresas que alugam carros. A integração com Stripe/Base44 pode ser conectada depois, mantendo a lógica das telas.</p>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
@@ -41,7 +41,7 @@ export default function Pricing() {
                 Criar ambiente da locadora <CreditCard className="h-4 w-4" />
               </Link>
               <Link to="/admin" className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-6 py-4 text-sm font-black text-white hover:bg-white/15">
-                Abrir painel demo <ShieldCheck className="h-4 w-4" />
+                Abrir painel de exemplo <ShieldCheck className="h-4 w-4" />
               </Link>
             </div>
 
@@ -59,7 +59,7 @@ export default function Pricing() {
                 ))}
               </div>
               <div className="mt-6 rounded-2xl border border-yellow-200 bg-yellow-50 p-5">
-                <p className="font-black text-yellow-900">Regra do jogo</p>
+                <p className="font-black text-yellow-900">Regra comercial</p>
                 <p className="mt-1 text-sm text-yellow-800">O plano AutoBox Pro é seu SaaS. Os valores de diária, semanal, mensal e caução são cadastrados pela própria locadora no painel dela.</p>
               </div>
             </div>

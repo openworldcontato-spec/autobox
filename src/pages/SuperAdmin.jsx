@@ -36,7 +36,7 @@ export default function SuperAdmin() {
   };
 
   const remove = (company) => {
-    if (window.confirm(`Excluir ${company.name}? Isso remove carros e reservas desse tenant.`)) {
+    if (window.confirm(`Excluir ${company.name}? Isso remove carros e reservas dessa empresa.`)) {
       deleteCompany(company.id);
       reload();
     }

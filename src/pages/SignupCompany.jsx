@@ -28,11 +28,11 @@ export default function SignupCompany() {
           <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-gold"><Building2 className="h-7 w-7" /></div>
           <p className="text-sm font-black uppercase tracking-widest text-gold">Onboarding</p>
           <h1 className="mt-2 font-playfair text-4xl font-black">Crie o ambiente da locadora</h1>
-          <p className="mt-4 text-sm leading-7 text-white/65">Este cadastro cria uma empresa no SaaS, com painel próprio, página pública e dados separados por company_id.</p>
+          <p className="mt-4 text-sm leading-7 text-white/65">Este cadastro cria uma empresa no SaaS, com painel próprio, página pública e dados isolados por locadora.</p>
           <div className="mt-8 rounded-3xl border border-white/10 bg-white/10 p-5">
             <p className="text-sm font-black uppercase tracking-widest text-white/50">Plano selecionado</p>
             <p className="mt-2 text-4xl font-black">{formatCurrency(97)}<span className="text-base font-bold text-white/50">/mês</span></p>
-            <p className="mt-2 text-sm text-white/65">AutoBox Pro. Pagamento real fica para Stripe/Base44.</p>
+            <p className="mt-2 text-sm text-white/65">AutoBox Pro. Pagamento pode ser conectado depois via Stripe/Base44.</p>
           </div>
           <div className="mt-6 space-y-3">
             {["Frota e reservas", "Logo, contato e textos", "Página pública com slug", "Super Admin para você"].map((item) => (
@@ -44,7 +44,7 @@ export default function SignupCompany() {
         <form onSubmit={submit} className="rounded-[2rem] border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
           <div className="mb-6">
             <h2 className="text-2xl font-black text-gray-900">Dados iniciais</h2>
-            <p className="mt-2 text-sm text-gray-500">Depois a locadora edita tudo no painel. Aqui é só criar o tenant.</p>
+            <p className="mt-2 text-sm text-gray-500">Depois a locadora pode editar os dados no painel. Aqui você cria o ambiente inicial da empresa.</p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
